@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <div style="display: flex; align-items: center">
+      <h1>记账本</h1>
+      <button
+        onclick="window.open('/create', '_self')"
+        style="margin-left: auto; display: block; width: 100px; height: 50px"
+      >
+        创建
+      </button>
+    </div>
+
+    <% data.forEach(one => { %>
+    <div
+      style="
+        border: 1px solid #e5e5e5;
+        padding: 10px;
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+      "
+    >
+      <div>
+        <div>时间：<%= one.time %></div>
+        <div>事项：<%= one.things %></div>
+        <div>收支：<%= one.inout === '-1' ? '支出' : '收入' %></div>
+        <div>金额：<%= one.count %></div>
+      </div>
+
+      <a
+        href="/create?id=<%= one.id %>"
+        style="margin-left: auto; text-decoration: underline"
+        >编辑</a
+      >
+
+      <a
+        href="/delete/<%= one.id %>"
+        style="margin-left: 10px; text-decoration: underline"
+        >删除</a
+      >
+    </div>
+    <% }) %>
+  </body>
+</html>

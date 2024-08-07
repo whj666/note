@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+
+    <form
+      action="/api/create?id=<%= data.id %>"
+      method="post"
+      style="border: 1px solid #e5e5e5; padding: 10px; margin-top: 10px"
+    >
+      <div>
+        时间：<input name="time" type="date" value="<%= data.time %>" />
+      </div>
+
+      <div>
+        事项：<input name="things" type="text" value="<%= data.things %>" />
+      </div>
+
+      <div>
+        收支： <% if(data.inout === '1') { %>
+        <input checked name="inout" type="radio" value="1" />
+        <% } else { %>
+        <input name="inout" type="radio" value="1" />
+        <% } %> 收入 <% if(data.inout === '-1') { %>
+        <input checked name="inout" type="radio" value="-1" />
+        <% } else { %>
+        <input name="inout" type="radio" value="-1" />
+        <% } %> 支出
+      </div>
+
+      <div>
+        金额：<input value="<%= data.count %>" name="count" type="number" />
+      </div>
+
+      <button>提交</button>
+    </form>
+  </body>
+</html>
